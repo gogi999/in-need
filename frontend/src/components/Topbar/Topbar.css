@@ -1,0 +1,112 @@
+.topbar-container {
+    height: 75px;
+    width: 100%;
+    background-color: #1f35a4;
+    display: flex;
+    align-items: center;
+    position: sticky;
+    top: 0;
+}
+
+.topbar-left {
+    flex: 3;
+}
+
+.logo {
+    font-size: 24px;
+    margin-top: 20px;
+    margin-left: 20px;
+    font-weight: bold;
+    color: white;
+    cursor: pointer;
+}
+
+.logo-img {
+    height: 72px;
+}
+
+.topbar-center {
+    flex: 5;
+}
+
+.searchbar {
+    width: 100%;
+    height: 30px;
+    background-color: white;
+    border-radius: 30px;
+    -webkit-border-radius: 30px;
+    -moz-border-radius: 30px;
+    -ms-border-radius: 30px;
+    -o-border-radius: 30px;
+    display: flex;
+    align-items: center;
+}
+
+.search-icon {
+    font-size: 20px !important;
+    margin-left: 10px;
+}
+
+.search-input {
+    border: none;
+    width: 70%;
+}
+
+.search-input:focus {
+    outline: none;
+}
+
+.topbar-right {
+    flex: 4;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    color: white;
+}
+
+.topbar-link {
+    margin-right: 10px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.topbar-icons {
+    display: flex;
+}
+
+.topbar-icon {
+    margin-right: 15px;
+    cursor: pointer;
+    position: relative;
+}
+
+.topbar-badge {
+    width: 15px;
+    height: 15px;
+    background-color: red;
+    border-radius: 50%;
+    color: white;
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    -o-border-radius: 50%;
+}
+
+.topbar-img {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    -o-border-radius: 50%;
+    object-fit: cover;
+    cursor: pointer;
+}
