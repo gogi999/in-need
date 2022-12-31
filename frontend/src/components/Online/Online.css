@@ -1,0 +1,40 @@
+.rightbar-friend {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.rightbar-img-container {
+    margin-right: 9px;
+    position: relative;
+}
+
+.rightbar-profile-img {
+    width: 40px;
+    height: 40px;
+    object-fit: cover;
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    -o-border-radius: 50%;
+}
+
+.rightbar-online {
+    width: 12px;
+    height: 12px;
+    background-color: limegreen;
+    position: absolute;
+    top: -2px;
+    right: 0;
+    border: 2px solid white;
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    -o-border-radius: 50%;
+}
+
+.rightbar-username {
+    font-weight: 500;
+}

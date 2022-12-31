@@ -1,11 +1,14 @@
 import React from 'react';
 
-import Home from './pages/Home/Home';
+import Login from './pages/Login/Login';
+
+// import Home from './pages/Home/Home';
+// import Profile from './pages/Profile/Profile';
 
 const App = () => {
     return (
         <div>
-            <Home />
+            <Login />
         </div>
     );
 }
