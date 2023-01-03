@@ -1,14 +1,29 @@
 import './Post.css';
 
-import React, { useState } from 'react';
+import React, {
+  useEffect,
+  useState,
+} from 'react';
+
+import axios from 'axios';
+import { Link } from 'react-router-dom';
+import { format } from 'timeago.js';
 
 import { MoreVert } from '@material-ui/icons';
 
-import { Users } from '../../data';
-
 const Post = ({ post }) => {
-    const [like, setLike] = useState(post.like);
+    const [like, setLike] = useState(post.likes.length);
     const [isLiked, setIsLiked] = useState(false);
+    const [user, setUser] = useState({});
+    const PF = process.env.REACT_APP_PUBLIC_FOLDER;
+
+    useEffect(() => {
+        const fetchUser = async () => {
+            const res = await axios.get(`/users?userId=${post.userId}`);
+            setUser(res.data);
+        }
+        fetchUser();
+    }, [post.userId]);
 
     const likeHandler = () => {
         setLike(isLiked ? like - 1 : like + 1);
@@ -20,15 +35,17 @@ const Post = ({ post }) => {
             <div className="post-wrapper">
                 <div className="post-top">
                     <div className="post-top-left">
-                        <img
-                            className="post-profile-img" 
-                            src={Users.filter((u) => u.id === post?.userId)[0].profilePicture} 
-                            alt="" 
-                        />
+                        <Link to={`/profile/${user.username}`} style={{ textDecoration: "none" }}>
+                            <img
+                                className="post-profile-img" 
+                                src={user.profilePicture || PF + "person/noAvatar.png"} 
+                                alt="" 
+                            />
+                        </Link>
                         <span className="post-username">
-                            {Users.filter((u) => u.id === post?.userId)[0].username}
+                            {user.username}
                         </span>
-                        <span className="post-date">{post.date}</span>
+                        <span className="post-date">{format(post.createdAt)}</span>
                     </div>
                     <div className="post-top-right">
                         <MoreVert />
@@ -40,7 +57,7 @@ const Post = ({ post }) => {
                     </span>
                     <img 
                         className="post-img"
-                        src={post.photo} 
+                        src={PF + post.img} 
                         alt="" 
                     />
                 </div>
@@ -48,13 +65,13 @@ const Post = ({ post }) => {
                     <div className="post-bottom-left">
                         <img 
                             className="like-icon"
-                            src="/assets/like.png" 
+                            src={`${PF}like.png`} 
                             alt="" 
                             onClick={likeHandler}
                         />
                         <img 
                             className="like-icon"
-                            src="/assets/heart.png" 
+                            src={`${PF}heart.png`} 
                             alt="" 
                             onClick={likeHandler}
                         />

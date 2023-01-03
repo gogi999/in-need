@@ -2,6 +2,8 @@ import './Topbar.css';
 
 import React from 'react';
 
+import { Link } from 'react-router-dom';
+
 import {
   Chat,
   Notifications,
@@ -12,13 +14,17 @@ import {
 import inNeedLogo from '../../images/in-need.jpg';
 
 const Topbar = () => {
+    const PF = process.env.REACT_APP_PUBLIC_FOLDER;
+
     return (
         <div className="topbar-container">
-            <img src={inNeedLogo} alt="logo-img" className="logo-img" />
+            <Link to="/" style={{ textDecoration: "none" }}>
+                <img src={inNeedLogo} alt="logo-img" className="logo-img" />
+            </Link>
             <div className="topbar-left">
-                <span className="logo">
-                    InNeed
-                </span>
+                <Link to="/" style={{ textDecoration: "none" }}>
+                    <span className="logo">InNeed</span>
+                </Link>
             </div>
             <div className="topbar-center">
                 <div className="searchbar">
@@ -31,7 +37,7 @@ const Topbar = () => {
             </div>
             <div className="topbar-right">
                 <div className="topbar-links">
-                    <span className="topbar-link">Homepage</span>
+                    <span className="topbar-link">Home</span>
                     <span className="topbar-link">Timeline</span>
                 </div>
                 <div className="topbar-icons">
@@ -48,7 +54,13 @@ const Topbar = () => {
                         <span className="topbar-badge">1</span>
                     </div>
                 </div>
-                <img src="/assets/person/1.jpeg" alt="profile-img" className="topbar-img" />
+                {/* <Link to={`/profile/${user.username}`}> */}
+                    <img
+                        src={PF + "person/1.jpeg"}
+                        alt=""
+                        className="topbar-img"
+                    />
+                {/* </Link> */}
             </div>
         </div>
     );

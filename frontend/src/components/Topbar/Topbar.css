@@ -1,5 +1,5 @@
 .topbar-container {
-    height: 75px;
+    height: 70px;
     width: 100%;
     background-color: #1f35a4;
     display: flex;
@@ -23,7 +23,8 @@
 }
 
 .logo-img {
-    height: 72px;
+    height: 70px;
+    margin-top: 3px;
 }
 
 .topbar-center {

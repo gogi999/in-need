@@ -1,8 +1,29 @@
 import './Login.css';
 
-import React from 'react';
+import React, {
+  useContext,
+  useRef,
+} from 'react';
+
+import { loginCall } from '../../apiCalls';
+import { AuthContext } from '../../context/AuthContext';
 
 const Login = () => {
+    const emailRef = useRef();
+    const passwordRef = useRef();
+    const { user, isFetching, error, dispatch } = useContext(AuthContext);
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        loginCall(
+            { 
+                email: emailRef.current.value, 
+                password: passwordRef.current.value 
+            }, 
+            dispatch
+        );
+    }
+
     return (
         <div className="login">
             <div className="login-wrapper">
@@ -13,23 +34,30 @@ const Login = () => {
                     </span>
                 </div>
                 <div className="login-right">
-                    <div className="login-box">
+                    <form className="login-box" onSubmit={handleSubmit}>
                         <input 
                             type="email" 
                             placeholder="Email" 
+                            required
                             className="login-input" 
+                            ref={emailRef}
                         />
                         <input 
                             type="password" 
                             placeholder="Password" 
-                            className="login-input"    
+                            required
+                            minLength="6"
+                            className="login-input"
+                            ref={passwordRef}    
                         />
-                        <button className="login-btn">Log In</button>
+                        <button className="login-btn">
+                            {isFetching ? "Loading..." : "Log In"}
+                        </button>
                         <span className="login-forgot">Forgot Password?</span>
                         <button className="login-register-btn">
                             Create a New Account
                         </button>
-                    </div>
+                    </form>
                 </div>
             </div>
         </div>

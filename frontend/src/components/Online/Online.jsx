@@ -3,11 +3,13 @@ import './Online.css';
 import React from 'react';
 
 const Online = ({ user }) => {
+    const PF = process.env.REACT_APP_PUBLIC_FOLDER;
+
     return (
         <li className="rightbar-friend">
             <div className="rightbar-img-container">
                 <img 
-                    src={user.profilePicture} 
+                    src={PF + user.profilePicture} 
                     alt="" 
                     className="rightbar-profile-img" 
                 />
