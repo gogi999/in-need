@@ -1,6 +1,6 @@
 import './Topbar.css';
 
-import React from 'react';
+import React, { useContext } from 'react';
 
 import { Link } from 'react-router-dom';
 
@@ -11,9 +11,11 @@ import {
   Search,
 } from '@material-ui/icons';
 
+import { AuthContext } from '../../context/AuthContext';
 import inNeedLogo from '../../images/in-need.jpg';
 
 const Topbar = () => {
+    const { user } = useContext(AuthContext);
     const PF = process.env.REACT_APP_PUBLIC_FOLDER;
 
     return (
@@ -54,13 +56,17 @@ const Topbar = () => {
                         <span className="topbar-badge">1</span>
                     </div>
                 </div>
-                {/* <Link to={`/profile/${user.username}`}> */}
+                <Link to={`/profile/${user.username}`}> 
                     <img
-                        src={PF + "person/1.jpeg"}
+                        src={
+                            user.profilePicture 
+                                ? PF + user.profilePicture 
+                                : PF + "person/noAvatar.png"
+                        }
                         alt=""
                         className="topbar-img"
                     />
-                {/* </Link> */}
+                </Link> 
             </div>
         </div>
     );

@@ -1,28 +1,32 @@
-import React from 'react';
+import React, { useContext } from 'react';
 
 import {
   BrowserRouter as Router,
+  Redirect,
   Route,
   Switch,
 } from 'react-router-dom';
 
+import { AuthContext } from './context/AuthContext';
 import Home from './pages/Home/Home';
 import Login from './pages/Login/Login';
 import Profile from './pages/Profile/Profile';
 import Register from './pages/Register/Register';
 
 const App = () => {
+    const { user } = useContext(AuthContext);
+
     return (
         <Router>
             <Switch>
                 <Route exact path="/">
-                    <Home />
+                    {user ? <Home /> : <Register />}
                 </Route>
                 <Route path="/login">
-                    <Login />
+                    {user ? <Redirect to="/" /> : <Login />}
                 </Route>
                 <Route path="/register">
-                    <Register />
+                    {user ? <Redirect to="/" /> : <Register />}
                 </Route>
                 <Route path="/profile/:username">
                     <Profile />

@@ -76,6 +76,14 @@
     -o-border-radius: 9px;
 }
 
+.login-btn:focus {
+    outline: none;
+}
+
+.login-btn:disabled {
+    cursor: not-allowed;
+}
+
 .login-forgot {
     text-align: center;
     color: #1775ee;

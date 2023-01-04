@@ -4,6 +4,9 @@ import express from 'express';
 import helmet from 'helmet';
 import mongoose from 'mongoose';
 import morgan from 'morgan';
+import multer from 'multer';
+import path, { dirname } from 'path';
+import { fileURLToPath } from 'url';
 
 import authRoutes from './routes/auth.js';
 import postRoutes from './routes/posts.js';
@@ -13,11 +16,32 @@ dotenv.config();
 
 const app = express();
 
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+
+app.use('/images', express.static(path.join(__dirname, 'public/images')));
 app.use(express.json({ limit: '30mb', extended: true }))
 app.use(express.urlencoded({ limit: '30mb', extended: true }))
 app.use(cors());
 app.use(helmet());
 app.use(morgan('common'));
+
+const storage = multer.diskStorage({
+    destination: (req, file, cb) => {
+        cb(null, 'public/images');
+    },
+    filename: (req, file, cb) => {
+        cb(null, req.body.name);
+    },
+});
+const upload = multer(storage);
+app.post('/api/upload', upload.single('file'), (req, res) => {
+    try {
+        return res.status(200).json('File uploaded successfully!');
+    } catch (err) {
+        console.log(err);
+    }
+});
 
 app.use('/api/posts', postRoutes);
 app.use('/api/users', userRoutes);
