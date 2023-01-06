@@ -9,6 +9,7 @@ import React, {
 import axios from 'axios';
 
 import {
+  Cancel,
   EmojiEmotions,
   Label,
   PermMedia,
@@ -73,6 +74,19 @@ const Share = () => {
                     />
                 </div>
                 <hr className="share-hr" />
+                {file && (
+                    <div className="share-img-container">
+                        <img 
+                            className="share-img"
+                            src={URL.createObjectURL(file)} 
+                            alt="" 
+                        />
+                        <Cancel 
+                            className="share-cancel-img" 
+                            onClick={() => setFile(null)}    
+                        />
+                    </div>
+                )}
                 <form className="share-bottom" onSubmit={handleSubmit}>
                     <div className="share-options">
                         <label htmlFor="file" className="share-option">

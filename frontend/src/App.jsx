@@ -10,6 +10,7 @@ import {
 import { AuthContext } from './context/AuthContext';
 import Home from './pages/Home/Home';
 import Login from './pages/Login/Login';
+import Messenger from './pages/Messenger/Messenger';
 import Profile from './pages/Profile/Profile';
 import Register from './pages/Register/Register';
 
@@ -27,6 +28,9 @@ const App = () => {
                 </Route>
                 <Route path="/register">
                     {user ? <Redirect to="/" /> : <Register />}
+                </Route>
+                <Route path="/messenger">
+                    {user ? <Redirect to="/" /> : <Messenger />}
                 </Route>
                 <Route path="/profile/:username">
                     <Profile />
